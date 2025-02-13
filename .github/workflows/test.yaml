@@ -213,9 +213,9 @@ jobs:
     runs-on: ${{ matrix.runs-on }}
     name: "`crds` `./runtests --cover` (${{ matrix.runs-on }}, py${{ matrix.python-version }})"
     env:
-      CRDS_PATH: /tmp/crds-cache-default-test
       CRDS_TEST_ROOT: /tmp
       CRDS_TESTING_CACHE: /tmp/crds-cache-test
+      CRDS_PATH: /tmp/crds-cache-default-test
       CRDS_SERVER_URL: https://hst-crds.stsci.edu
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
@@ -246,7 +246,7 @@ jobs:
           fetch-depth: 0
       - run: pip uninstall --yes crds && ./install && pip install .[submission,test,docs,synphot]
         working-directory: ${{ matrix.package }}
-      - uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a  # v4.1.2
+      - uses: actions/cache/restore@6849a6489940f00c2f30c0fb92c6274307ccb58a  # v4.1.2
         with:
           path: |
             ${{ needs.crds_test_cache.outputs.path }}

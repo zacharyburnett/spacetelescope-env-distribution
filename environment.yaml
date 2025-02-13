@@ -13,6 +13,7 @@ dependencies:
   - ipython
   - jupyter
   - numpy<2.0
+  - openblas
   - pip
   - python>=3.10
   - scipy
